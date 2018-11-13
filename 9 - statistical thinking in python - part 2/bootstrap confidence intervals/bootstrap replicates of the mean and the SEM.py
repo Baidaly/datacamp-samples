@@ -1,0 +1,25 @@
+'''
+In this exercise, you will compute a bootstrap estimate of the probability density function of the mean annual rainfall at the Sheffield Weather Station. Remember, we are estimating the mean annual rainfall we would get if the Sheffield Weather Station could repeat all of the measurements from 1883 to 2015 over and over again. This is a probabilistic estimate of the mean. You will plot the PDF as a histogram, and you will see that it is Normal.
+
+In fact, it can be shown theoretically that under not-too-restrictive conditions, the value of the mean will always be Normally distributed. (This does not hold in general, just for the mean and a few other statistics.) The standard deviation of this distribution, called the standard error of the mean, or SEM, is given by the standard deviation of the data divided by the square root of the number of data points. I.e., for a data set, sem = np.std(data) / np.sqrt(len(data)). Using hacker statistics, you get this same result without the need to derive it, but you will verify this result from your bootstrap replicates.
+
+The dataset has been pre-loaded for you into an array called rainfall.
+'''
+# Take 10,000 bootstrap replicates of the mean: bs_replicates
+bs_replicates = draw_bs_reps(rainfall, np.mean, 10000)
+
+# Compute and print SEM
+sem = np.std(rainfall) / np.sqrt(len(rainfall))
+print(sem)
+
+# Compute and print standard deviation of bootstrap replicates
+bs_std = np.std(bs_replicates)
+print(bs_std)
+
+# Make a histogram of the results
+_ = plt.hist(bs_replicates, bins=50, normed=True)
+_ = plt.xlabel('mean annual rainfall (mm)')
+_ = plt.ylabel('PDF')
+
+# Show the plot
+plt.show()
