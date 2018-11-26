@@ -5,3 +5,12 @@ In the next few problems, you will look at the beak depth of G. scandens on Daph
 
 The data are stored in a pandas DataFrame called df with columns 'year' and 'beak_depth'. The units of beak depth are millimeters (mm).
 '''
+# Create bee swarm plot
+_ = sns.swarmplot(data=df, x='year', y='beak_depth')
+
+# Label the axes
+_ = plt.xlabel('year')
+_ = plt.ylabel('beak depth (mm)')
+
+# Show the plot
+plt.show()
